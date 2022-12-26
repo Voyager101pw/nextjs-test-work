@@ -1,21 +1,22 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import Date from '../components/date'
+import { GetStaticProps } from 'next';
+
+import Date from '../components/date';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
   return {
     props: {
       allPostsData,
     },
   };
-}
+};
 
 export default function Home({ allPostsData }) {
-  console.log(allPostsData)
   return (
     <Layout home>
       <Head>
